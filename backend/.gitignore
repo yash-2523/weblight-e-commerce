@@ -1,0 +1,11 @@
+node_modules/
+.env
+package-lock.json
+src/static/uploads
+static/
+dist/
+tsconfig.tsbuildinfo
+fullchain.pem
+privkey.pem
+stdout.txt
+stderr.txt
