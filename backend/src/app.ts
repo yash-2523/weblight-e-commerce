@@ -1,11 +1,7 @@
 import express from "express";
 import path from "path";
-const cookieParser = require("cookie-parser");
 import fs from "fs";
-const session = require("express-session");
 import cors from "cors";
-// import "dotenv/config";
-import https from "https";
 import http from "http";
 import { errorHandlerMiddleware } from "./api/middlewares";
 import APIRoutes from "./api/routes";
@@ -14,9 +10,9 @@ const socket = require("socket.io");
 const app = express();
 
 // Basics for express application
-app.use("trust proxy", () => true);
+// cors allow http:localhost:3000 to access our server
 app.use(cors());
-app.use(cookieParser())
+
 app.use(express.json());
 app.use(
 	express.urlencoded({
@@ -24,19 +20,8 @@ app.use(
 	})
 );
 
-let location = "";
-
-// Importing files of SSL certificate
-var privateKey = fs.readFileSync(location + "privkey.pem", {encoding:"utf8",flag:"r"});
-var certificate = fs.readFileSync(location + "fullchain.pem", {encoding:"utf8",flag:"r"});
-
-const credentials = {
-	key: privateKey,
-	cert: certificate,
-};
-
 // Starting secured server with all loaded certificates
-const server: any = https.createServer(credentials, app);
+const server: any = http.createServer(app);
 // Initializing Socket Server
 const io = socket(server);
 
@@ -57,9 +42,6 @@ app.get("*", (req, res) => {
 });
 
 app.use(errorHandlerMiddleware);
-if(process.env.NODE_ENV !== "production"){
-	process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-}
 
 export { app, server };
 	

@@ -6,7 +6,7 @@ import dbConfig from "./config/databaseConfig";
 
 dbConfig(() => {
 	server.listen(PORT, () => {
-		console.log("HTTPS Server started on PORT " + server.address().port);
+		console.log("HTTP Server started on PORT " + server.address().port);
 	});
 })
 

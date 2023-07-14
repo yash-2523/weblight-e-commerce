@@ -58,30 +58,10 @@ export default class AuthController {
     }
 
     public static async getUser(req: IRequest, res: Response, next: NextFunction) {
-        return res.status(200).json(req.user)
-    }
-
-    // admin login
-    public static async adminLogin(req: IRequest, res: Response, next: NextFunction) {
-        try{
-            const { email, password } = req.body;
-            const user = await userModel.findOne({ email, isAdmin: true });
-            if(!user) {
-                return next(new ExpressError("Invalid Credentials", 400))
-            }
-            const isMatch = await bcrypt.compare(password, user.password);
-            if(!isMatch) {
-                return next(new ExpressError("Invalid Credentials", 400))
-            }
-            const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET as string, { expiresIn: "1d" });
-            return res.status(200).json({
-                success: true,
-                message: "Admin logged in successfully!",
-                token
-            })
-        }catch(err: any) {
-            return next(new ExpressError("Unable to login admin", 500, err))
-        }
-            
+        return res.status(200).json({
+            success: true,
+            message: "User fetched successfully!",
+            data: req.user
+        })
     }
 }

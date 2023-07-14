@@ -47,19 +47,22 @@ export default class ProductAdminController {
             
             const product: any = await productModel.findById(req.params.productId);
 
-            let isCategory = await categoryModel.findById(category);
-            if(!isCategory) {
-                return next(new ExpressError("Category not found!", 404))
+            if(category){
+                let isCategory = await categoryModel.findById(category);
+                if(!isCategory) {
+                    return next(new ExpressError("Category not found!", 404))
+                }
             }
+            
 
             if(!product) {
                 return next(new ExpressError("Product not found!", 404))
             }
 
-            product.name = name;
-            product.description = description;
-            product.price = price;
-            product.category = category;
+            product.name = name || product.name;
+            product.description = description || product.description;
+            product.price = price || product.price;
+            product.category = category || product.category;
 
             if(req.files?.productImages && req.files?.productImages.length > 0) {
                 req.files.productImages.forEach((image: any) => {
