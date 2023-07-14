@@ -53,8 +53,8 @@ const ProductCard = ({ product }: any) => {
                         key={i}
                         className="mx-auto"
                         component="img"
-                        width={345}
-                        sx={{ maxHeight: 140 }}
+                        height={140}
+                        sx={{ maxHeight: 140, width: "auto" }}
                         image={`${DEV_STATIC_URL}/static/uploads/${item.fileName}`}
                         alt="green iguana"
                     />

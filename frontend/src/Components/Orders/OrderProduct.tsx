@@ -14,6 +14,11 @@ const OrderedProductCard = ({ orderedProduct }: any) => {
 
     const [quantity, setQuantity] = useState<number>(orderedProduct.quantity);
 
+    let getDate = () => {
+        let date = new Date(orderedProduct.createdAt);
+        return date.toLocaleDateString();
+    }
+
     return (
         <Card className="m-4 py-3" sx={{ maxWidth: 345, minWidth: 345, height: 500 }}>
             <Carousel
@@ -24,8 +29,8 @@ const OrderedProductCard = ({ orderedProduct }: any) => {
                         key={i}
                         className="mx-auto"
                         component="img"
-                        width={345}
-                        sx={{ maxHeight: 140 }}
+                        height={140}
+                        sx={{ maxHeight: 140, width: "auto" }}
                         image={`${DEV_STATIC_URL}/static/uploads/${item.fileName}`}
                         alt="green iguana"
                     />
@@ -52,8 +57,8 @@ const OrderedProductCard = ({ orderedProduct }: any) => {
                     />
                 </div>
                 <div className="d-flex align-items-center mt-3">
-                    <span><b>Ordered At:</b> </span>
-                    <span className="ms-2">{Date()}</span>
+                    <span><b>Date:</b> </span>
+                    <span className="ms-2">{getDate()}</span>
                 </div>
             </div>
         </Card>

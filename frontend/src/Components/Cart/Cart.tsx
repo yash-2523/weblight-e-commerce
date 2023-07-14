@@ -40,6 +40,7 @@ export default function Cart(){
 
     return (
         <div className="w-100">
+            <div className="d-flex justify-content-center align-items-center"><h1 className="mx-auto mb-3">Cart Items</h1></div>
             
             {(cartQuery.isLoading || cartQuery.isFetching) && <div className="d-flex justify-content-center align-items-center mt-5 mb-3"><PulseLoader color='#36d7b7' /></div>}
 

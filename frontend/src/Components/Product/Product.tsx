@@ -65,6 +65,7 @@ export default function Product(){
 
     return (
         <div className="w-100">
+            <div className="d-flex justify-content-center align-items-center"><h1 className="mx-auto mb-3">Prducts</h1></div>
             <Accordion className="bg-light mx-4">
                 <AccordionSummary><h4>Filters</h4></AccordionSummary>
                 <AccordionDetails className="d-flex flex-column align-items-center">
@@ -79,7 +80,7 @@ export default function Product(){
                             onChange={(e) => setCategory(e.target.value)}
                             variant="outlined"
                         >
-                            <option value={''}></option>
+                            <option value={''}>All</option>
                             {categories.map((category: any) => (
                                 
                                 <option key={category._id} value={category._id}>
