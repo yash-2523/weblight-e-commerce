@@ -62,7 +62,6 @@ export default function Product(){
     const handleFilter = () => {
         productsQuery.refetch();
     }
-
     return (
         <div className="w-100">
             <div className="d-flex justify-content-center align-items-center"><h1 className="mx-auto mb-3">Prducts</h1></div>
