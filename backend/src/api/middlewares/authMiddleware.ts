@@ -33,7 +33,6 @@ export default async function authMiddleware(
         req.user = user;
         next();
     } catch (err) {
-        console.log(err)
         res.status(401).json({ success: false, message: "Token is not valid" });
     }
 }

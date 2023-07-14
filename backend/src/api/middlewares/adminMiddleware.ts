@@ -32,7 +32,6 @@ export default async function (req: any, res: Response, next: NextFunction){
             return res.status(401).json({ success: false, message: "Not authorized" });
         }
     } catch (err) {
-        console.log(err)
         res.status(401).json({ success: false, message: "Token is not valid" });
     }
 }
